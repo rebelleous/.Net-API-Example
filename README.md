@@ -24,8 +24,10 @@ With this created web API project it can do given phrases:
   > This HttpGet action getting boat list by color (red,black, white or blue)
   
 - /api/Car/{id}
-  > This HttpPatch action turn on/off headlights of car by car’s ID. (HttpPatch action is used for best practice instead of HttpPost)
+  > This HttpDelete action delete car by car's ID.
   
 - /api/Car/{id}
-  > This HttpDelete action delete car by car's ID.
+  > This HttpPatch action turn on/off headlights of car by car’s ID. (HttpPatch action is used for best practice instead of HttpPost)
+  
+
   
