@@ -1,6 +1,10 @@
+using AlphaStellar.Models;
+using AlphaStellar.Services;
+using AlphaStellar.Services.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AlphaStellar
@@ -22,18 +27,30 @@ namespace AlphaStellar
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
+
+            // ------ DB CONNECTION ------
+            services.AddDbContext<AppDbContext>(
+            options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+            // ------ DB CONNECTION ------
+
+            // ------ SERVICE INJECTION ------
+            services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+            services.AddScoped<IBusService, BusService>();
+            services.AddScoped<IBoatService, BoatService>();
+            services.AddScoped<ICarService, CarService>();
+            // ------ SERVICE INJECTION ------
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AlphaStellar", Version = "v1" });
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -42,7 +59,7 @@ namespace AlphaStellar
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AlphaStellar v1"));
             }
-
+            SeedData.Seed(app);
             app.UseRouting();
 
             app.UseAuthorization();
