@@ -1,1 +1,24 @@
-# AlphaStellar-Study-Case
+# AlphaStellar_Study_Case
+
+Web API project can list, update and delete vehicles.
+
+## Actions
+
+ ![image](https://user-images.githubusercontent.com/56580536/151660233-8aa3299f-17e6-4027-8b82-0dce9ffa4176.png)
+
+
+- /api/Car/{color} 
+  > This HttpGet action getting car list by color (red,black, white or blue)
+  
+- /api/Bus/{color} 
+  > This HttpGet action getting bus list by color (red,black, white or blue)
+  
+- /api/Boat/{color} 
+  > This HttpGet action getting boat list by color (red,black, white or blue)
+  
+- /api/Car/{id}
+  > This HttpPatch action turn on/off headlights of car by car’s ID. (HttpPatch action is used for best practice instead of HttpPost)
+  
+- /api/Car/{id}
+  > This HttpDelete action delete car by car's ID.
+  
