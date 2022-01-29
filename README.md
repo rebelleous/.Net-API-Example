@@ -1,8 +1,15 @@
 # AlphaStellar_Study_Case
 
-Web API project can list, update and delete vehicles.
 
-## Actions
+With this created web API project it can do given phrases:
+
+- The user should have access to a repository of cars, boats, and buses with different colors (red, blue, black, white). 
+
+- The car should be a vehicle (base class). A vehicle can have a color and buses and boats can be a vehicle. 
+
+- The car should have wheels and headlights
+
+## EndPoints
 
  ![image](https://user-images.githubusercontent.com/56580536/151660233-8aa3299f-17e6-4027-8b82-0dce9ffa4176.png)
 
