@@ -1,4 +1,4 @@
-# AlphaStellar_Study_Case
+# .NET API Example
 
 
 With this created web API project it can do given phrases:
